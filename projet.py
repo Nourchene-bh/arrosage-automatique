@@ -2,9 +2,8 @@ import RPi.GPIO as GPIO
 import datetime
 import time
 
-init = False
 
-GPIO.setmode(GPIO.BOARD) # Broadcom pin-numbering scheme
+GPIO.setmode(GPIO.BOARD) 
 
 def get_last_watered():
     try:
@@ -22,14 +21,14 @@ def init_output(pin):
     GPIO.output(pin, GPIO.LOW)
     GPIO.output(pin, GPIO.HIGH)
     
-def auto_water(delay = 5, pump_pin = 7, humidité_pin = 8):
+def auto_water(delay = 5, pump_pin = 7, humi_pin = 8):
     wc = 0
     init_output(pump_pin)
    
     try:
         while  wc < 10:
             time.sleep(delay)
-            wet = get_status(pin = humidité_pin) == 0
+            wet = get_status(pin = humi_pin) == 0
             if not wet:
                 if wc < 5:
                     pump_on(pump_pin, 1)
