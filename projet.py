@@ -5,9 +5,9 @@ import time
 
 GPIO.setmode(GPIO.BOARD) 
 
-def dernier_arossage():
+def ledernier_arossage():
     try:
-        f = open("Arrosage.txt", "r")
+        f = open("dernier_arrosage.txt", "r")
         return f.readline()
     except:
         return "jamais!"
@@ -26,8 +26,8 @@ def init_output(pin):
     
     def pompe_on(pompe_pin = 7, delay = 1):
     init_output(pompe_pin)
-    f = open("Arrosage.txt", "w")
-    f.write("Arrosage {}".format(datetime.datetime.now()))
+    f = open("dernier_arrosage.txt", "w")
+    f.write("dernier_arrosage {}".format(datetime.datetime.now()))
     f.close()
     GPIO.output(pompe_pin, GPIO.LOW)
     time.sleep(1)
